@@ -1,0 +1,39 @@
+
+
+conda create -n aligner -c https://anaconda.mgb.org/conda-forge/ --insecure --override-channels  montreal-forced-aligner
+mamba activate aligner
+
+
+# downloads to ~/Downloads/MFA
+mfa model download dictionary english_uk_mfa
+mfa model download acoustic english_mfa
+
+
+# mfa align_one [OPTIONS] SOUND_FILE_PATH TEXT_FILE_PATH DICTIONARY_PATH ACOUSTIC_MODEL_PATH OUTPUT_PATH
+
+# audio file: /Users/ly546/Documents/data/mngu0_s1_wav_16kHz_1.1.0/mngu0_s1_0401.wav
+# text file: /Users/ly546/Documents/data/mngu0_s1_lab_1.1.1/mngu0_s1_0401.utt
+
+# mfa align_one
+
+#. .....  and for building a database 
+pip install praatio pandas tqdm
+pip uninstall -y praatio # CAREFUL though. MFA expects the newer version of praatio. 
+pip install 'praatio<5' 
+pip install xarray
+
+
+## for dynamic time warping
+git clone https://github.com/prlabu/gdtw.git
+cd gdtw
+python setup.py build_ext --inplace
+pip install -e .
+
+
+
+
+
+## install python prosodic package 
+pip install prosodic 
+brew install espeak
+
